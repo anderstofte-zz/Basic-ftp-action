@@ -1,13 +1,26 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  host: # url to ftp-server
+    description: 'FTP server name'
     required: true
-    default: 'World'
+  port: # port ftp-server uses
+    description: 'Port ftp server uses. Defaults to 21'
+    required: false
+    default: 21
+  user: # ftp-server user
+    description: connect to ftp werver as this user'
+    required: true
+  password: # ftp-users password
+    description: 'Password of the ftp user'
+    required: true
+  local-dir: # directory to upload files from
+    description: 'Local directory to uplaod files from'
+    required: true
+  remote-dir: # directory to upload to
+    description: 'Remote directory to upload to'
+    required: true
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: 'index.js'
