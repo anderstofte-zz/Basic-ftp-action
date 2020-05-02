@@ -1388,19 +1388,6 @@ const core = __webpack_require__(694);
 const github = __webpack_require__(30);
 const ftp = __webpack_require__(602)
 
-// try {
-//   // `who-to-greet` input defined in action metadata file
-//   const nameToGreet = core.getInput('who-to-greet');
-//   console.log(`Hello ${nameToGreet}!`);
-//   const time = (new Date()).toTimeString();
-//   core.setOutput("time", time);
-//   // Get the JSON webhook payload for the event that triggered the workflow
-//   const payload = JSON.stringify(github.context.payload, undefined, 2)
-//   console.log(`The event payload: ${payload}`);
-// } catch (error) {
-//   core.setFailed(error.message);
-// }
-
 
 try {
     example()
@@ -1421,6 +1408,7 @@ async function example() {
         })
         console.log(await client.list())
         await client.ensureDir(core.getInput('remote-dir'))
+        await client.remove(core.getInput('remote-dir') + '/web.config')
         await client.clearWorkingDir()
         await client.uploadFromDir(core.getInput('local-dir'))
     }
