@@ -1420,10 +1420,13 @@ async function example() {
             secure: true
         })
         await client.ensureDir(core.getInput('remote-dir'))
-         // Always delete web.config first as it's preventing .exe to be deleted.
-         await client.remove('web.config')
-         await client.clearWorkingDir()
-         await client.uploadFromDir(core.getInput('local-dir'))
+        // Always delete web.config first as it's preventing .exe to be deleted.
+        if (fileList.find(x => x.name == 'web.config')) {
+            await client.remove('web.config')
+        }
+        
+        await client.clearWorkingDir()
+        await client.uploadFromDir(core.getInput('local-dir'))
     }
     catch(err) {
         core.setFailed(error.message);
