@@ -1428,7 +1428,7 @@ async function example() {
         await client.clearWorkingDir()
         await client.uploadFromDir(core.getInput('local-dir'))
     }
-    catch(err) {
+    catch(error) {
         core.setFailed(error.message);
     }
     client.close()
