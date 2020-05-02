@@ -1408,7 +1408,7 @@ async function example() {
         })
         console.log(await client.list())
         await client.ensureDir(core.getInput('remote-dir'))
-        await client.remove(core.getInput('remote-dir') + '/web.config')
+        await client.list(core.getInput('remote-dir'))
         await client.clearWorkingDir()
         await client.uploadFromDir(core.getInput('local-dir'))
     }
