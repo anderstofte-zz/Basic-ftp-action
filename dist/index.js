@@ -1421,6 +1421,7 @@ async function example() {
         })
         await client.ensureDir(core.getInput('remote-dir'))
         // Always delete web.config first as it's preventing .exe to be deleted.
+        var fileList = await client.list()
         if (fileList.find(x => x.name == 'web.config')) {
             await client.remove('web.config')
         }
